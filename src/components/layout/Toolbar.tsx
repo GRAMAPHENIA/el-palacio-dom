@@ -10,12 +10,12 @@ type Props = {
 
 export default function Toolbar({ onSelect }: Props) {
   return (
-    <aside className="flex gap-2 overflow-x-auto p-4 bg-zinc-900/30 rounded-xl">
+    <aside className="flex justify-center gap-4 overflow-x-auto p-4 bg-zinc-900/30 rounded-xl">
       {HTML_ELEMENTS.map((tag) => (
         <button
           key={tag}
           onClick={() => onSelect(tag)}
-          className="px-4 py-2 text-sm text-zinc-200 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+          className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-200 bg-zinc-900 rounded-lg hover:bg-zinc-800 cursor-grab active:cursor-grabbing transition"
         >
           {`<${tag}>`}
         </button>
