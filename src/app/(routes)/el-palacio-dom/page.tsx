@@ -23,7 +23,7 @@ export default function ElPalacioDom() {
         <div className="flex justify-end">
           <button
             onClick={clearStructure}
-            className="px-4 py-2 text-sm text-zinc-200 bg-red-600 hover:bg-red-700 rounded-lg transition"
+            className="px-4 py-2 text-sm text-zinc-200 bg-zinc-900/50 hover:bg-zinc-800 rounded-lg transition cursor-pointer"
           >
             Limpiar todo
           </button>
