@@ -19,17 +19,18 @@ export default function DropZone() {
   };
 
   return (
-    <div 
-      className="mt-6 w-full min-h-[400px] bg-zinc-900/30 rounded-xl p-6 text-left"
+    <div
+      className="mt-6 flex flex-col justify-center items-center w-full min-h-[400px] bg-zinc-900/30 rounded-xl p-6 text-left border-2 border-dashed border-zinc-700/50"
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       {structure.length === 0 ? (
-        <div className="h-full flex items-center justify-center">
-          <p className="text-zinc-500 text-center">
+        <div className="h-full flex flex-col items-center justify-center p-8">
+          <p className="text-zinc-400 text-center text-lg mb-2">
             Arrastra y suelta elementos aquí
-            <br />
-            <span className="text-sm text-zinc-600">o haz clic en los botones de arriba</span>
+          </p>
+          <p className="text-zinc-500 text-sm">
+            o haz clic en los botones de arriba
           </p>
         </div>
       ) : (
@@ -37,7 +38,7 @@ export default function DropZone() {
           {structure.map((node) => (
             <div
               key={node.id}
-              className="p-3 border border-zinc-700 rounded-lg bg-zinc-900/50 hover:bg-zinc-800/50 transition-colors"
+              className="p-3 border border-zinc-800 border-dashed rounded-lg bg-zinc-900/30 hover:bg-zinc-800/50 transition-colors"
               draggable
             >
               <code className="text-zinc-300 font-mono">

@@ -8,11 +8,11 @@ export default function ElPalacioDom() {
   const { addElement, clearStructure } = useBuilder();
 
   return (
-    <main className="container h-screen mx-auto p-6 bg-zinc-950 ">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-white">Editor de Elementos</h1>
+    <main className="container mx-auto p-6 bg-blue-950/10 h-screen">
+      <header className="my-8 text-center">
+        <h1 className="text-5xl font-bold text-white">Editor de Elementos</h1>
         <p className="text-zinc-400">
-          Arrastra y suelta elementos para construir tu interfaz
+          Elementos para construir tu interfaz
         </p>
       </header>
 
