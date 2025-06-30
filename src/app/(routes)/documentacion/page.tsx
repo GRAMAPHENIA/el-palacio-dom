@@ -1,5 +1,6 @@
 import React from 'react';
-import { BookOpen, Code, GitBranch, Zap, ArrowRight, ExternalLink } from 'lucide-react';
+import { BookOpen, Code, GitBranch, Zap, ArrowRight, ExternalLink, Home } from 'lucide-react';
+import Link from 'next/link';
 
 const FeatureCard = ({ icon: Icon, title, children, className = '' }: { 
   icon: React.ComponentType<{ className?: string }>; 
@@ -37,7 +38,14 @@ const Step = ({ number, title, children }: { number: number; title: string; chil
 
 export default function Documentacion() {
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-zinc-950 relative">
+      <Link 
+        href="/" 
+        className="fixed top-6 left-6 z-50 p-3 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 text-zinc-300 hover:bg-zinc-800/80 hover:text-white transition-colors"
+        aria-label="Volver al inicio"
+      >
+        <Home className="w-5 h-5" />
+      </Link>
       <div className="container mx-auto p-6 py-12 max-w-5xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 text-blue-400 text-sm font-medium rounded-full mb-4">
