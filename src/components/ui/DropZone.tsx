@@ -18,53 +18,46 @@ export default function DropZone() {
 
   const handleDragOver = (
     e: React.DragEvent<HTMLDivElement>,
-    index: number
+    index?: number
   ) => {
     e.preventDefault();
-    e.stopPropagation();
     
-    // Solo actualizamos el dragOverItem si es diferente al actual
-    if (dragOverItem !== index) {
+    // Si estamos sobre un elemento específico, actualizamos el dragOverItem
+    if (typeof index === 'number' && dragOverItem !== index) {
       setDragOverItem(index);
     }
     
-    // Establecer el efecto de arrastre como 'move'
-    e.dataTransfer.dropEffect = "move";
-    return false;
+    // Establecer el efecto de arrastre como 'move' o 'copy' según corresponda
+    const isFromToolbar = e.dataTransfer.types.includes('text/plain');
+    e.dataTransfer.dropEffect = isFromToolbar ? 'copy' : 'move';
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>, index?: number) => {
     e.preventDefault();
-    e.stopPropagation();
 
     // Si viene de la barra de herramientas
     const tag = e.dataTransfer.getData("text/plain");
     if (tag) {
-      // Si se está soltando en un elemento específico, lo insertamos en esa posición
-      if (dragOverItem !== null) {
-        // Usamos el índice donde se soltó el elemento
-        const newStructure = [...structure];
-        newStructure.splice(dragOverItem, 0, { 
-          id: Math.random().toString(36).substr(2, 9),
-          tag,
-          children: [] 
-        });
-        // Actualizamos el estado directamente para evitar problemas de sincronización
-        useBuilder.setState({ structure: newStructure });
-      } else {
-        addElement(tag);
-      }
+      const targetIndex = typeof index === 'number' ? index : structure.length;
+      
+      // Insertar el nuevo elemento en la posición objetivo
+      const newStructure = [...structure];
+      newStructure.splice(targetIndex, 0, { 
+        id: Math.random().toString(36).substr(2, 9),
+        tag,
+        children: [] 
+      });
+      
+      // Actualizar el estado
+      useBuilder.setState({ structure: newStructure });
       setDragOverItem(null);
       return;
     }
 
     // Si es un reordenamiento
-    if (draggedItem !== null && dragOverItem !== null) {
-      // Asegurarnos de que los índices sean válidos
-      if (draggedItem >= 0 && dragOverItem >= 0 && draggedItem !== dragOverItem) {
-        console.log(`Moviendo de ${draggedItem} a ${dragOverItem}`);
-        moveElement(draggedItem, dragOverItem);
-      }
+    if (typeof draggedItem === 'number' && typeof index === 'number' && draggedItem !== index) {
+      console.log(`Moviendo de ${draggedItem} a ${index}`);
+      moveElement(draggedItem, index);
     }
 
     // Resetear estados
@@ -94,12 +87,8 @@ export default function DropZone() {
   return (
     <div
       className="h-full flex flex-col w-full bg-zinc-900/30 rounded-xl p-4 border-2 border-dashed border-zinc-700/50"
-      onDragOver={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.dataTransfer.dropEffect = "move";
-      }}
-      onDrop={handleDrop}
+      onDragOver={(e) => handleDragOver(e)}
+      onDrop={(e) => handleDrop(e)}
     >
       {structure.length === 0 ? (
         <div className="h-full flex flex-col items-center justify-center p-8">
@@ -115,12 +104,11 @@ export default function DropZone() {
           {structure.map((node, index) => (
             <div
               key={node.id}
-              className={`p-3 border border-zinc-700/50 rounded-lg transition-all duration-200 ${getItemStyle(
-                index
-              )}`}
+              className={`p-3 border border-zinc-700/50 rounded-lg transition-all duration-200 ${getItemStyle(index)}`}
               draggable
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
+              onDrop={(e) => handleDrop(e, index)}
               onDragEnd={handleDragEnd}
             >
               <code className="text-zinc-300 font-mono text-sm">
