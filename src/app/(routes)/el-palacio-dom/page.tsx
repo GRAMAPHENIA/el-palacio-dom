@@ -1,5 +1,7 @@
 "use client";
 
+import { Home, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 import Toolbar from "@/components/layout/Toolbar";
 import DropZone from "@/components/ui/DropZone";
 import CodeViewer from "@/components/ui/CodeViewer";
@@ -9,8 +11,24 @@ export default function ElPalacioDom() {
   const { clearStructure } = useBuilder();
 
   return (
-    <main className="h-screen flex flex-col bg-zinc-950">
-      <div className="container mx-auto p-6 flex-1 flex flex-col">
+    <main className="h-screen flex flex-col bg-zinc-950 relative">
+      <div className="fixed top-6 left-6 right-6 flex justify-between z-50">
+        <Link 
+          href="/" 
+          className="p-3 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 text-zinc-300 hover:bg-zinc-800/80 hover:text-white transition-colors"
+          aria-label="Volver al inicio"
+        >
+          <Home className="w-5 h-5" />
+        </Link>
+        <Link 
+          href="/documentacion" 
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+        >
+          <BookOpen className="w-4 h-4" />
+          Documentación
+        </Link>
+      </div>
+      <div className="container mx-auto p-6 pt-24 flex-1 flex flex-col">
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-white">Editor de Elementos</h1>
           <p className="text-zinc-400">
