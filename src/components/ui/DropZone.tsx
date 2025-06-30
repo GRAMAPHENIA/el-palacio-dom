@@ -1,27 +1,66 @@
 "use client";
 
 import { useBuilder } from "@/features/builder/builderSlice";
+import { useCallback, useState } from 'react';
 
 export default function DropZone() {
-  const { structure, addElement } = useBuilder();
+  const { structure, addElement, moveElement } = useBuilder();
+  const [draggedItem, setDraggedItem] = useState<number | null>(null);
+  const [dragOverItem, setDragOverItem] = useState<number | null>(null);
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+    setDraggedItem(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
+    if (draggedItem === null) return;
+    
+    if (index !== dragOverItem) {
+      setDragOverItem(index);
+    }
+    
+    e.dataTransfer.dropEffect = 'move';
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    
+    // Si viene de la barra de herramientas
     const tag = e.dataTransfer.getData('text/plain');
     if (tag) {
       addElement(tag);
+      return;
     }
+    
+    // Si es un reordenamiento
+    if (draggedItem !== null && dragOverItem !== null && draggedItem !== dragOverItem) {
+      moveElement(draggedItem, dragOverItem);
+    }
+    
+    setDraggedItem(null);
+    setDragOverItem(null);
   };
+
+  const handleDragEnd = () => {
+    setDraggedItem(null);
+    setDragOverItem(null);
+  };
+
+  const getItemStyle = useCallback((index: number) => {
+    if (index === draggedItem) return 'opacity-50 bg-zinc-800/70';
+    if (index === dragOverItem) return 'border-blue-500/50 bg-zinc-800/30';
+    return 'bg-zinc-900/30 hover:bg-zinc-800/30';
+  }, [draggedItem, dragOverItem]);
 
   return (
     <div
-      className="mt-6 flex flex-col justify-center items-center w-full min-h-[400px] bg-zinc-900/30 rounded-xl p-6 text-left border-2 border-dashed border-zinc-700/50"
-      onDragOver={handleDragOver}
+      className="h-full flex flex-col w-full bg-zinc-900/30 rounded-xl p-4 border-2 border-dashed border-zinc-700/50"
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy';
+      }}
       onDrop={handleDrop}
     >
       {structure.length === 0 ? (
@@ -34,16 +73,19 @@ export default function DropZone() {
           </p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {structure.map((node) => (
+        <div className="space-y-2 w-full h-full overflow-y-auto">
+          {structure.map((node, index) => (
             <div
               key={node.id}
-              className="p-3 border border-zinc-800 border-dashed rounded-lg bg-zinc-900/30 hover:bg-zinc-800/50 transition-colors"
+              className={`p-3 border border-zinc-700/50 rounded-lg transition-all duration-200 ${getItemStyle(index)}`}
               draggable
+              onDragStart={(e) => handleDragStart(e, index)}
+              onDragOver={(e) => handleDragOver(e, index)}
+              onDragEnd={handleDragEnd}
             >
-              <code className="text-zinc-300 font-mono">
+              <code className="text-zinc-300 font-mono text-sm">
                 {`<${node.tag}>`}
-                <span className="text-zinc-500">...</span>
+                {node.children?.length ? '...' : ''}
                 {`</${node.tag}>`}
               </code>
             </div>

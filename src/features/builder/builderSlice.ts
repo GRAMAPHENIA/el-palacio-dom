@@ -13,6 +13,7 @@ type ElementNode = {
 type Store = {
   structure: ElementNode[];
   addElement: (tag: string) => void;
+  moveElement: (fromIndex: number, toIndex: number) => void;
   clearStructure: () => void;
 };
 
@@ -25,8 +26,14 @@ const store = (set: SetState) => ({
     set((state) => ({
       structure: [...state.structure, { id: uuid(), tag, children: [] }],
     })),
+  moveElement: (fromIndex: number, toIndex: number) =>
+    set((state) => {
+      const newStructure = [...state.structure];
+      const [movedItem] = newStructure.splice(fromIndex, 1);
+      newStructure.splice(toIndex, 0, movedItem);
+      return { structure: newStructure };
+    }),
   clearStructure: () => set(() => ({ structure: [] })),
 });
 
-// @ts-expect-error - Ignoramos temporalmente los errores de tipado
 export const useBuilder = create(persist(store, { name: 'el-palacio-del-dom' }));
