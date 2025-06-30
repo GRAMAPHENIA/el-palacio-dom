@@ -2,12 +2,18 @@
 
 import { useBuilder } from "@/features/builder/builderSlice";
 
-const formatNode = (node: any, level: number = 0): string => {
+interface Node {
+  id: string;
+  tag: string;
+  children?: Node[];
+}
+
+const formatNode = (node: Node, level: number = 0): string => {
   const indent = '  '.repeat(level);
   if (!node) return '';
   
   if (node.children && node.children.length > 0) {
-    const children = node.children.map((child: any) => formatNode(child, level + 1)).join('\n');
+    const children = node.children.map((child: Node) => formatNode(child, level + 1)).join('\n');
     return `${indent}<${node.tag}>\n${children}\n${indent}</${node.tag}>`;
   }
   

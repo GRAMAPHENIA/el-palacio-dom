@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Code, GitBranch, Zap, ArrowRight, ExternalLink, Home } from 'lucide-react';
+import { BookOpen, Code, Zap, ArrowRight, ExternalLink, Home } from 'lucide-react';
 import Link from 'next/link';
 
 const FeatureCard = ({ icon: Icon, title, children, className = '' }: { 

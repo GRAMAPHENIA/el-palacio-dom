@@ -4,7 +4,7 @@ import { useBuilder } from "@/features/builder/builderSlice";
 import { useCallback, useState } from "react";
 
 export default function DropZone() {
-  const { structure, addElement, moveElement } = useBuilder();
+  const { structure, moveElement } = useBuilder();
   const [draggedItem, setDraggedItem] = useState<number | null>(null);
   const [dragOverItem, setDragOverItem] = useState<number | null>(null);
 
