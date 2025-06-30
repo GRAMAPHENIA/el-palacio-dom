@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "El Palacio del DOM",
+  title: "El Palacio DOM",
   description: "Construí interfaces mágicas arrastrando y soltando elementos. Dominá el HTML como si fuera una alquimia visual.",
 };
 

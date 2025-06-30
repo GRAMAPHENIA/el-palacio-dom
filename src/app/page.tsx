@@ -7,7 +7,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 py-8 text-center">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-5xl sm:text-6xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-400 to-zinc-600 mb-6">
-          El Palacio del DOM
+          El Palacio DOM
         </h1>
         
         <p className="text-xl text-zinc-300 mb-10">

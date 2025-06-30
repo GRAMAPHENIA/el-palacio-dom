@@ -80,7 +80,7 @@ export default function ElPalacioDom() {
       {/* Footer fijo en la parte inferior */}
       <footer className="py-4 bg-zinc-900/50 border-t border-zinc-800">
         <div className="container mx-auto px-6 text-center text-sm text-zinc-500">
-          <p>© {new Date().getFullYear()} El Palacio del DOM. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} El Palacio DOM. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>

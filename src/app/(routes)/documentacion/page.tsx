@@ -53,7 +53,7 @@ export default function Documentacion() {
             Documentación
           </div>
           <h1 className="text-4xl font-bold text-white mb-4">
-            Aprende a usar El Palacio del DOM
+            Aprende a usar El Palacio DOM
           </h1>
           <p className="text-lg text-zinc-400">
             Guía completa para crear interfaces web de manera intuitiva con nuestra herramienta de arrastrar y soltar.
