@@ -1,8 +1,8 @@
 // Ruta: src/features/builder/builderSlice.ts
 
-import { create } from 'zustand';
-import { v4 as uuid } from 'uuid';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { v4 as uuid } from "uuid";
+import { persist } from "zustand/middleware";
 
 type ElementNode = {
   id: string;
@@ -36,4 +36,6 @@ const store = (set: SetState) => ({
   clearStructure: () => set(() => ({ structure: [] })),
 });
 
-export const useBuilder = create(persist(store, { name: 'el-palacio-del-dom' }));
+export const useBuilder = create(
+  persist(store, { name: "el-palacio-del-dom" })
+);
