@@ -1,3 +1,4 @@
+import React from 'react';
 import { BookOpen, Code, GitBranch, Zap, ArrowRight, ExternalLink } from 'lucide-react';
 
 const FeatureCard = ({ icon: Icon, title, children, className = '' }: { 
