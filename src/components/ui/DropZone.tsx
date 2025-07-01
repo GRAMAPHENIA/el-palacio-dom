@@ -2,9 +2,16 @@
 
 import { useBuilder } from "@/features/builder/builderSlice";
 import { useCallback, useState } from "react";
+import { Trash2 } from "lucide-react";
 
 export default function DropZone() {
-  const { structure, moveElement, selectedElementId, selectElement } = useBuilder();
+  const {
+    structure,
+    selectedElementId,
+    moveElement,
+    selectElement,
+    removeElement,
+  } = useBuilder();
   const [draggedItem, setDraggedItem] = useState<number | null>(null);
   const [dragOverItem, setDragOverItem] = useState<number | null>(null);
 
@@ -110,7 +117,7 @@ export default function DropZone() {
           {structure.map((node, index) => (
             <div
               key={node.id}
-              className={`p-3 border rounded-lg transition-all duration-200 ${getItemStyle(index)} ${
+              className={`group relative p-3 pr-10 border rounded-lg transition-all duration-200 ${getItemStyle(index)} ${
                 selectedElementId === node.id 
                   ? 'border-blue-500 bg-zinc-800/50' 
                   : 'border-zinc-700/50 hover:border-zinc-600'
@@ -125,6 +132,16 @@ export default function DropZone() {
               onDrop={(e) => handleDrop(e, index)}
               onDragEnd={handleDragEnd}
             >
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeElement(node.id);
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 opacity-0 group-hover:opacity-100 hover:bg-red-500/20 rounded-md text-red-400/70 hover:text-red-300 transition-all duration-200"
+                title="Eliminar elemento"
+              >
+                <Trash2 size={14} />
+              </button>
               <div className="flex flex-col gap-1">
                 <code className="text-zinc-300 font-mono text-sm">
                   {`<${node.tag}`}

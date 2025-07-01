@@ -27,6 +27,7 @@ type BuilderState = {
   updateAttribute: (elementId: string, attributeId: string, updates: Partial<Attribute>) => void;
   addAttribute: (elementId: string) => void;
   removeAttribute: (elementId: string, attributeId: string) => void;
+  removeElement: (id: string) => void;
   clearStructure: () => void;
 };
 
@@ -122,6 +123,10 @@ export const useBuilder = create<BuilderState>()(
         })),
         
       clearStructure: () => set({ structure: [], selectedElementId: null }),
+      removeElement: (id: string) => set((state) => ({
+        structure: state.structure.filter((node) => node.id !== id),
+        selectedElementId: state.selectedElementId === id ? null : state.selectedElementId,
+      })),
     }),
     {
       name: "el-palacio-del-dom",
