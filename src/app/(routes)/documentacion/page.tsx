@@ -1,10 +1,7 @@
 import React from 'react';
 import { 
   BookOpen, 
-  Code, 
   Zap, 
-  ArrowRight, 
-  ExternalLink, 
   Home, 
   Code2, 
   MousePointerClick, 
@@ -13,8 +10,7 @@ import {
   Smartphone,
   CodeXml,
   LayoutGrid,
-  Settings2,
-  Copy
+  Settings2
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -143,7 +139,7 @@ export default function Documentacion() {
 
             <Step number={4} title="Eliminar Elementos">
               Pasa el cursor sobre un elemento y haz clic en el ícono de basura que aparece a la derecha.
-              Usa el botón "Limpiar todo" para reiniciar el área de trabajo.
+              Usa el botón &ldquo;Limpiar todo&rdquo; para reiniciar el área de trabajo.
             </Step>
 
             <Step number={5} title="Copiar el Código">
