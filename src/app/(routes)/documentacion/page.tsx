@@ -116,7 +116,7 @@ export default function Documentacion() {
           </FeatureCard>
         </div>
 
-        <section id="como-usar" className="mb-16">
+<section id="como-usar" className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
             <Zap className="w-6 h-6 text-blue-400" />
             Guía Rápida
@@ -181,6 +181,58 @@ export default function Documentacion() {
                 <span className="text-zinc-400">...&lt;/{tag}&gt;</span>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="atributos" className="mt-16">
+          <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+            <Code2 className="w-6 h-6 text-blue-400" />
+            Atributos de Elementos
+          </h2>
+          
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 mb-8">
+            <h3 className="text-xl font-semibold text-white mb-4">Tipos de Atributos</h3>
+            <p className="text-zinc-300 mb-6">
+              Los atributos permiten personalizar el comportamiento y apariencia de los elementos HTML. Aquí tienes una guía de los atributos más comunes:
+            </p>
+            
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-medium text-blue-400 mb-2">Atributos Básicos</h4>
+                <ul className="space-y-2 text-zinc-300">
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">id</code> - Identificador único para el elemento</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">class</code> - Clases CSS para estilizar el elemento</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">style</code> - Estilos CSS en línea</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">title</code> - Texto que aparece al pasar el cursor</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-medium text-blue-400 mb-2">Atributos de Formulario</h4>
+                <ul className="space-y-2 text-zinc-300">
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">type</code> - Tipo de input (text, email, password, etc.)</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">placeholder</code> - Texto de ejemplo en campos vacíos</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">required</code> - Indica que el campo es obligatorio</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">disabled</code> - Desactiva el campo</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-medium text-blue-400 mb-2">Atributos de Imagen</h4>
+                <ul className="space-y-2 text-zinc-300">
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">src</code> - URL de la imagen</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">alt</code> - Texto alternativo para accesibilidad</li>
+                  <li><code className="bg-zinc-800 px-2 py-1 rounded">width/height</code> - Dimensiones de la imagen</li>
+                </ul>
+              </div>
+              
+              <div className="bg-blue-900/20 border border-blue-800/50 rounded-lg p-4">
+                <h4 className="font-medium text-blue-300 mb-2">Consejo</h4>
+                <p className="text-blue-200 text-sm">
+                  Puedes agregar cualquier atributo HTML estándar o personalizado. Los atributos personalizados deben comenzar con <code className="bg-blue-900/50 px-1.5 py-0.5 rounded">data-</code> para ser válidos en HTML5.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
