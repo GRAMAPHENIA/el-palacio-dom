@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Toolbar from "@/components/layout/Toolbar";
 import DropZone from "@/components/ui/DropZone";
 import CodeViewer from "@/components/ui/CodeViewer";
+import AttributesPanel from "@/components/ui/AttributesPanel";
 import { useBuilder } from "@/features/builder/builderSlice";
 
 export default function ElPalacioDom() {
@@ -52,8 +53,8 @@ export default function ElPalacioDom() {
             <div className="hidden lg:block">
               <Toolbar />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-0">
-              <div className="flex flex-col h-full">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-0">
+              <div className="flex flex-col h-full lg:col-span-2">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-sm font-medium text-zinc-300">Área de trabajo</h2>
                   <button
@@ -66,11 +67,20 @@ export default function ElPalacioDom() {
                 <DropZone />
               </div>
               
-              <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-sm font-medium text-zinc-300">Vista previa del código</h2>
+              <div className="flex flex-col h-full space-y-6">
+                <div className="flex-1 flex flex-col">
+                  <h2 className="text-sm font-medium text-zinc-300 mb-2">Vista previa del código</h2>
+                  <div className="flex-1 min-h-0">
+                    <CodeViewer />
+                  </div>
                 </div>
-                <CodeViewer />
+                
+                <div className="bg-zinc-900/50 rounded-xl p-4 border border-zinc-800 flex-1 flex flex-col min-h-0">
+                  <h2 className="text-sm font-medium text-zinc-300 mb-3">Atributos</h2>
+                  <div className="flex-1 overflow-y-auto">
+                    <AttributesPanel />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
