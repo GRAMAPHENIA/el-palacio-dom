@@ -63,7 +63,6 @@ export default function CodeViewer() {
   };
 
   const formattedLines = formatCode();
-  const codeContent = formattedLines.join('\n');
 
   const handleCopy = async () => {
     try {
