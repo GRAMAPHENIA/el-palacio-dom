@@ -1,5 +1,21 @@
 import React from 'react';
-import { BookOpen, Code, Zap, ArrowRight, ExternalLink, Home } from 'lucide-react';
+import { 
+  BookOpen, 
+  Code, 
+  Zap, 
+  ArrowRight, 
+  ExternalLink, 
+  Home, 
+  Code2, 
+  MousePointerClick, 
+  Trash2,
+  Move,
+  Smartphone,
+  CodeXml,
+  LayoutGrid,
+  Settings2,
+  Copy
+} from 'lucide-react';
 import Link from 'next/link';
 
 const FeatureCard = ({ icon: Icon, title, children, className = '' }: { 
@@ -38,7 +54,7 @@ const Step = ({ number, title, children }: { number: number; title: string; chil
 
 export default function Documentacion() {
   return (
-    <main className="min-h-screen bg-zinc-950 relative">
+    <div className="min-h-screen bg-zinc-950 relative">
       <Link 
         href="/" 
         className="fixed top-6 left-6 z-50 p-3 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 text-zinc-300 hover:bg-zinc-800/80 hover:text-white transition-colors"
@@ -46,7 +62,8 @@ export default function Documentacion() {
       >
         <Home className="w-5 h-5" />
       </Link>
-      <div className="container mx-auto p-6 py-12 max-w-5xl">
+      
+      <main className="container mx-auto p-6 py-12 max-w-5xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 text-blue-400 text-sm font-medium rounded-full mb-4">
             <BookOpen className="w-4 h-4" />
@@ -60,51 +77,132 @@ export default function Documentacion() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
-          <FeatureCard icon={Zap} title="Fácil de usar">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <FeatureCard icon={Move} title="Arrastra y Suelta">
             <p className="mb-4">
-              Crea interfaces web completas sin necesidad de escribir código. Solo arrastra, suelta y personaliza.
+              Construye estructuras HTML de forma intuitiva arrastrando elementos al área de trabajo.
+              Soporta anidación y reordenamiento de elementos.
             </p>
-            <a href="/el-palacio-dom" className="inline-flex items-center text-blue-400 hover:text-blue-300 text-sm font-medium group">
-              Probar ahora <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
           </FeatureCard>
           
-          <FeatureCard icon={Code} title="Código limpio">
+          <FeatureCard icon={Settings2} title="Edición en Tiempo Real">
             <p className="mb-4">
-              Genera código HTML limpio y semántico que puedes copiar y usar en cualquier proyecto.
+              Modifica atributos en tiempo real y ve los cambios reflejados al instante en la vista previa.
             </p>
-            <a href="#como-usar" className="inline-flex items-center text-blue-400 hover:text-blue-300 text-sm font-medium group">
-              Ver ejemplos <ExternalLink className="w-4 h-4 ml-1" />
-            </a>
+          </FeatureCard>
+
+          <FeatureCard icon={CodeXml} title="HTML Limpio">
+            <p className="mb-4">
+              Genera código HTML bien formateado con indentación y resaltado de sintaxis.
+              Fácil de copiar y usar en cualquier proyecto.
+            </p>
+          </FeatureCard>
+
+          <FeatureCard icon={MousePointerClick} title="Selección Intuitiva">
+            <p className="mb-4">
+              Haz clic en cualquier elemento para seleccionarlo y ver sus atributos.
+              Resalta visualmente el elemento seleccionado.
+            </p>
+          </FeatureCard>
+
+          <FeatureCard icon={Trash2} title="Gestión de Elementos">
+            <p className="mb-4">
+              Elimina elementos fácilmente con el botón de basura que aparece al pasar el cursor.
+              También puedes limpiar todo el área de trabajo.
+            </p>
+          </FeatureCard>
+
+          <FeatureCard icon={Smartphone} title="Diseño Responsivo">
+            <p className="mb-4">
+              Interfaz adaptativa que funciona perfectamente en dispositivos móviles y de escritorio.
+              Panel de atributos optimizado para pantallas pequeñas.
+            </p>
           </FeatureCard>
         </div>
 
         <section id="como-usar" className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
             <Zap className="w-6 h-6 text-blue-400" />
-            Cómo usar el editor
+            Guía Rápida
+          </h2>
+          
+          <div className="space-y-1 mb-12">
+            <Step number={1} title="Añadir Elementos">
+              Haz clic en cualquier botón de la barra de herramientas o arrastra elementos al área de trabajo.
+              Los elementos se insertarán en la posición donde los sueltes.
+            </Step>
+            
+            <Step number={2} title="Seleccionar Elementos">
+              Haz clic en cualquier elemento para seleccionarlo. Verás un borde azul alrededor del elemento seleccionado.
+            </Step>
+            
+            <Step number={3} title="Editar Atributos">
+              Con un elemento seleccionado, usa el panel de atributos para modificar sus propiedades.
+              Puedes agregar, editar o eliminar atributos según necesites.
+            </Step>
+
+            <Step number={4} title="Eliminar Elementos">
+              Pasa el cursor sobre un elemento y haz clic en el ícono de basura que aparece a la derecha.
+              Usa el botón "Limpiar todo" para reiniciar el área de trabajo.
+            </Step>
+
+            <Step number={5} title="Copiar el Código">
+              Usa el botón de copiar en la sección de vista previa para copiar el código HTML generado.
+              El código incluirá toda la estructura que hayas creado.
+            </Step>
+          </div>
+
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2 mt-12">
+            <Code2 className="w-6 h-6 text-blue-400" />
+            Atajos de Teclado
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+              <div className="flex items-center gap-2 text-sm font-medium text-zinc-300 mb-2">
+                <kbd className="px-2 py-1 bg-zinc-800 rounded text-xs">Ctrl</kbd> + 
+                <kbd className="px-2 py-1 bg-zinc-800 rounded text-xs">C</kbd>
+                <span className="ml-2">Copiar elemento seleccionado</span>
+              </div>
+            </div>
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+              <div className="flex items-center gap-2 text-sm font-medium text-zinc-300">
+                <kbd className="px-2 py-1 bg-zinc-800 rounded text-xs">Supr</kbd>
+                <span className="ml-2">Eliminar elemento seleccionado</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2 mt-12">
+            <LayoutGrid className="w-6 h-6 text-blue-400" />
+            Elementos Disponibles
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {['div', 'p', 'h1', 'h2', 'h3', 'span', 'a', 'button', 'img', 'ul', 'ol', 'li', 'input', 'form', 'section', 'article', 'header', 'footer', 'nav', 'aside'].map((tag) => (
+              <div key={tag} className="bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-2 text-sm font-mono">
+                <span className="text-blue-400">&lt;{tag}&gt;</span>
+                <span className="text-zinc-400">...&lt;/{tag}&gt;</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <Zap className="w-6 h-6 text-blue-400" />
+            Funcionalidades Adicionales
           </h2>
           
           <div className="space-y-1">
-            <Step number={1} title="Selecciona un elemento">
-              Elige entre los elementos HTML disponibles en la barra de herramientas.
-            </Step>
-            
-            <Step number={2} title="Arrástralo al área de trabajo">
-              Haz clic y arrastra el elemento hasta soltarlo en la posición deseada.
-            </Step>
-            
-            <Step number={3} title="Personaliza las propiedades">
-              Ajusta las propiedades del elemento según tus necesidades.
-            </Step>
-            
-            <Step number={4} title="Reorganiza los elementos">
+            <Step number={1} title="Reorganización de Elementos">
               Arrastra los elementos para reordenarlos dentro del área de trabajo.
+              Puedes arrastrar elementos para anidarlos dentro de otros elementos.
             </Step>
             
-            <Step number={5} title="Copia el código generado">
-              Usa el botón de copiar en la vista previa del código para obtener el HTML.
+            <Step number={2} title="Exportación de Código">
+              Usa el botón de copiar en la vista previa del código para obtener el HTML generado.
+              El código incluye toda la estructura y los atributos que hayas configurado.
             </Step>
           </div>
         </section>
@@ -125,7 +223,7 @@ export default function Documentacion() {
             </a>
           </div>
         </section>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
