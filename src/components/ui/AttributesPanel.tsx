@@ -65,7 +65,7 @@ export default function AttributesPanel() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pb-2">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-zinc-300">
           &lt;{selectedElement.tag}&gt; Atributos
@@ -86,29 +86,35 @@ export default function AttributesPanel() {
       ) : (
         <div className="space-y-3">
           {selectedElement.attributes.map((attr: Attribute) => (
-            <div key={attr.id} className="flex gap-2 items-center">
-              <input
-                type="text"
-                value={attr.name}
-                onChange={(e) => handleAttributeChange(attr.id, 'name', e.target.value)}
-                className="flex-1 bg-zinc-800/50 border border-zinc-700 rounded px-2 py-1 text-sm text-white"
-                placeholder="nombre"
-              />
-              <span className="text-zinc-500">=</span>
-              <input
-                type="text"
-                value={attr.value}
-                onChange={(e) => handleAttributeChange(attr.id, 'value', e.target.value)}
-                className="flex-1 bg-zinc-800/50 border border-zinc-700 rounded px-2 py-1 text-sm text-white"
-                placeholder="valor"
-              />
-              <button
-                onClick={() => handleRemoveAttribute(attr.id)}
-                className="p-1 text-zinc-500 hover:text-red-400 transition-colors"
-                title="Eliminar atributo"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
+            <div key={attr.id} className="relative group">
+              <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+                <div className="w-full sm:w-auto sm:flex-1">
+                  <input
+                    type="text"
+                    value={attr.name}
+                    onChange={(e) => handleAttributeChange(attr.id, 'name', e.target.value)}
+                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded px-2 py-1.5 text-sm text-white"
+                    placeholder="nombre"
+                  />
+                </div>
+                <span className="hidden sm:inline text-zinc-500">=</span>
+                <div className="w-full sm:w-auto sm:flex-1 flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={attr.value}
+                    onChange={(e) => handleAttributeChange(attr.id, 'value', e.target.value)}
+                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded px-2 py-1.5 text-sm text-white"
+                    placeholder="valor"
+                  />
+                  <button
+                    onClick={() => handleRemoveAttribute(attr.id)}
+                    className="p-1.5 text-red-400 hover:text-red-300 rounded-md hover:bg-red-500/20 transition-colors"
+                    title="Eliminar atributo"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>

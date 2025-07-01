@@ -75,9 +75,9 @@ export default function ElPalacioDom() {
                   </div>
                 </div>
                 
-                <div className="bg-zinc-900/50 rounded-xl p-4 border border-zinc-800 flex-1 flex flex-col min-h-0">
+                <div className="bg-zinc-900/50 rounded-xl p-4 border border-zinc-800 flex-1 flex flex-col">
                   <h2 className="text-sm font-medium text-zinc-300 mb-3">Atributos</h2>
-                  <div className="flex-1 overflow-y-auto">
+                  <div className="flex-1">
                     <AttributesPanel />
                   </div>
                 </div>

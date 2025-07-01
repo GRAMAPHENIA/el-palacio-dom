@@ -121,7 +121,7 @@ export default function DropZone() {
                 selectedElementId === node.id 
                   ? 'border-blue-500 bg-zinc-800/50' 
                   : 'border-zinc-700/50 hover:border-zinc-600'
-              }`}
+              } cursor-grab active:cursor-grabbing`}
               draggable
               onClick={(e) => {
                 e.stopPropagation();
