@@ -4,6 +4,19 @@ import { useBuilder } from "@/features/builder/builderSlice";
 import { Plus, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
 
+type Attribute = {
+  id: string;
+  name: string;
+  value: string;
+};
+
+type ElementNode = {
+  id: string;
+  tag: string;
+  attributes: Attribute[];
+  children?: ElementNode[];
+};
+
 export default function AttributesPanel() {
   const { 
     structure, 
@@ -13,12 +26,16 @@ export default function AttributesPanel() {
     removeAttribute
   } = useBuilder();
   
-  const [selectedElement, setSelectedElement] = useState<any>(null);
+  const [selectedElement, setSelectedElement] = useState<ElementNode | null>(null);
   
   useEffect(() => {
     if (selectedElementId) {
       const element = structure.find(el => el.id === selectedElementId);
-      setSelectedElement(element);
+      if (element) {
+        setSelectedElement(element);
+      } else {
+        setSelectedElement(null);
+      }
     } else {
       setSelectedElement(null);
     }
@@ -68,7 +85,7 @@ export default function AttributesPanel() {
         </p>
       ) : (
         <div className="space-y-3">
-          {selectedElement.attributes.map((attr: any) => (
+          {selectedElement.attributes.map((attr: Attribute) => (
             <div key={attr.id} className="flex gap-2 items-center">
               <input
                 type="text"

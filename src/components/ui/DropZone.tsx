@@ -145,7 +145,7 @@ export default function DropZone() {
                         {attr.value && (
                           <>
                             <span className="mx-1">=</span>
-                            <span className="text-blue-300">"{attr.value}"</span>
+                            <span className="text-blue-300">&quot;{attr.value}&quot;</span>
                           </>
                         )}
                       </span>
